@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Angle Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-size: 1.1em;
+            text-align: left;
+        }
+        input, button {
+            font-size: 1em;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e7f5ff;
+            border: 1px solid #b3d4fc;
+            border-radius: 5px;
+        }
+        .error {
+            background: #ffe6e6;
+            border-color: #ff9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Solar Angle Calculator</h1>
+        <form method="POST" action="/calculate">
+            <label for="latitude">Latitude:</label>
+            <input type="text" id="latitude" name="latitude" placeholder="Enter latitude (e.g., 34.8375)" required>
+            <label for="longitude">Longitude:</label>
+            <input type="text" id="longitude" name="longitude" placeholder="Enter longitude (e.g., 128.0167)" required>
+            <label for="date">Date (YYYY-MM-DD):</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time (HH:MM):</label>
+            <input type="time" id="time" name="time" required>
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h3>Results:</h3>
+            <p><strong>Solar Altitude:</strong> {{ altitude }}°</p>
+            <p><strong>Solar Azimuth:</strong> {{ azimuth }}°</p>
+            <p><strong>Optimal Drying Rack Angle:</strong> {{ optimal_angle }}°</p>
+        </div>
+    </div>
+</body>
+</html>
